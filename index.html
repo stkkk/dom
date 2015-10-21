@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id="parentDiv">
+	<div name="div_name" data-f-max="11" class="c1" id="d1">000</div>
+	<div name="div_name" class="c1" id="d2">111</div>
+	<div name="div_name" class="c1 c2" id="d3">222</div>
+</div>
+	<script type="text/javascript">
+	// var parent = function(e, n) {
+	// 	if (n === undefined) n = 1;
+	// 	while(n-- && e != null) {
+	// 		e = e.parentNode;
+	// 	}
+	// 	if (!e || e.nodeType !== 1) {
+	// 		return null;
+	// 	}
+	// 	return e;
+	// }
+
+	//var k = document.querySelector(".c1");
+
+	//var a = document.getElementsByName('div_name');
+
+	//var b = document.getElementsByTagName('div');
+
+	//var c = document.getElementsByClassName('c2 c1');
+
+	// var a = document.getElementById('parentDiv').childNodes;
+	// Array.prototype.forEach.call(a,function(e,p){
+	// 	if (e.nodeType == 1) {
+	// 		b = e;
+	// 	}
+	// });
+	// console.log(a);
+
+	// console.log(b.parentNode);
+	// console.log(b.nextSibling);
+	// console.log(b.previousSibling);
+
+	// var a = document.getElementById('parentDiv');
+	// console.log(a.children);
+	// console.log(a.firstChild);
+	// console.log(a.lastChild);
+	// console.log(a.firstElementChild);
+	// console.log(a.lastElementChild);
+	////nextElementSibing/previousElementSibling
+	//alert(a.childElementCount);
+	// var b = parent(a,3);
+	// console.log(b);
+	var b = document.getElementsByTagName('div');// 实时改变
+	var c = document.querySelectorAll('div');// 非实时
+	var a = document.getElementById('parentDiv');
+	// var b= document.querySelectorAll(".c1");
+	// console.log(b);
+	// console.log(a.attributes);
+	// a.setAttribute('name','name1');
+	//alert(a.getAttribute('name'));
+
+	// a.textContent ='kkk';
+	// a.innerText = 'ppp';
+	console.log(b);
+	var newDiv = document.createElement('div');
+
+	newDiv.setAttribute('name', 'div_name');
+	newDiv.setAttribute('data-f-max', 20);
+	newDiv.id = 'd4';
+	if (typeof newDiv.textContent === 'string') {
+		newDiv.textContent = '333';
+	} else {
+		newDiv.innerText = '333';
+	}
+	var newDiv2 = newDiv.cloneNode(false);
+	var newDiv3 = newDiv.cloneNode(true);
+	//a.appendChild(newDiv);
+	a.insertBefore(newDiv, a.childNodes[1]);
+	alert(a.children.length);
+	a.appendChild(newDiv2);
+	alert(a.children.length);
+	newDiv2.parentNode.removeChild(newDiv2); // replaceChild(newDiv2, newDiv3)
+	alert(a.children.length);
+	console.log(b);
+	Element.prototype.__defineGetter__("outerHTML", function(){
+		return 'getter';
+	});
+	console.log(Element.prototype);
+	function akkk () {
+		
+	}
+	</script>
+</body>
+</html>

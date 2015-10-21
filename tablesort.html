@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<table id="pointTable">
+		<thead>
+		<tr>
+			<th>序号</th>
+			<th>姓名</th>
+			<th>语文</th>
+			<th>数学</th>
+			<th>英语</th>
+		</tr>			
+		</thead>
+		<tbody>
+		<tr>
+			<td>26</td>
+			<td>刘备</td>
+			<td>56</td>
+			<td>79</td>
+			<td>34</td>
+		</tr>
+		<tr>
+			<td>13</td>
+			<td>曹操</td>
+			<td>35</td>
+			<td>49</td>
+			<td>90</td>
+		</tr>
+		<tr>
+			<td>23</td>
+			<td>诸葛亮</td>
+			<td>34</td>
+			<td>88</td>
+			<td>77</td>
+		</tr>
+		<tr>
+			<td>16</td>
+			<td>孙权</td>
+			<td>68</td>
+			<td>88</td>
+			<td>35</td>
+		</tr>				
+		</tbody>					
+	</table>
+	<script type="text/javascript">
+	var table = document.getElementById('pointTable');
+	function sortTable(colIndex, sortType) {	
+		var tBody = table.tBodies[0];
+		var rows = tBody.getElementsByTagName('tr');
+		var rowsArray = [].slice.call(rows,0);
+		rowsArray.sort(function(row1, row2) {
+			var tb1 = row1.getElementsByTagName('td')[colIndex];
+			var tb2 = row2.getElementsByTagName('td')[colIndex];
+			var tb1_text = tb1.textContent || tb1.innerText;
+			var tb2_text = tb2.textContent || tb2.innerText;
+			var result = 0;
+			if (sortType == 'desc') {
+				result = tb2_text - tb1_text;
+			} else {
+				result = tb1_text - tb2_text;
+			}
+			if (result > 0) return 1;
+			if (result == 0) return 0;
+			if (result < 0) return -1;
+		});
+		for (var i = 0; i < rowsArray.length; i++) {
+			tBody.appendChild(rowsArray[i]);
+		}
+		
+	}
+
+	function bindEvent() {
+		var ths = table.getElementsByTagName('th');
+		for (var i = 0; i < ths.length; i++) {
+			var element = ths[i];
+			(function(element, index) {				
+				element.onclick = function(){
+					var sortType = element.getAttribute('sortType');
+					if (sortType == 'desc') {
+						element.setAttribute('sortType', 'asc');
+					} else {
+						element.setAttribute('sortType', 'desc');
+					}
+					sortTable(index, sortType);
+				};
+			})(element, i);
+		}
+	}
+
+	bindEvent();
+
+	</script>
+</body>
+</html>
